@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <h2>Lista de Recetas</h2>
+    
+    {% if recetas %}
+        <ul>
+            {% for item in rec_ingredientes %}
+                <li>
+                    <strong>{{ item.receta.nombre }}</strong>
+                    {% if item.receta.notas %} - <em>{{ item.receta.notas }}</em>{% endif %}
+                    <ul>
+                        {% for ingrediente in item.ingredientes %}
+                            <li>{{ ingrediente.cantidad_gramos }}g de {{ ingrediente.ingrediente.nombre }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay recetas disponibles.</p>
+    {% endif %}
+{% endblock content %}
