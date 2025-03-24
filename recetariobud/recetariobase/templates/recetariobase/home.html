@@ -14,31 +14,12 @@
 <div class="home-container">
 
     <div class="">
-        {% include 'base/topics_component.html'%}
+        
 
         <!-- Los datos los carga la página en la que estemos
             y "los pasa" a los distintos componentes que incluyamos
             Por eso desde los componentes podemos "ver" los datos
             que carga la página, sino sería terrible -->
-    </div>
-
-
-    <div class="">
-
-        <h5>
-            {{room_count}}
-            {% if room_count == 1 %}
-                room available
-            {% else %}
-                rooms available
-            {% endif %}
-        </h5>
-        <a href="{% url 'create-room' %}">Create Room</a>
-        {% include 'base/feed_component.html' %}
-    </div>
-
-    <div>
-        {% include 'base/activity_component.html' %}
     </div>
 
 
