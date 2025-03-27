@@ -1,23 +1,36 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    <h2>Lista de Recetas</h2>
-    
-    {% if recetas %}
-        <ul>
-            {% for item in rec_ingredientes %}
-                <li>
-                    <strong>{{ item.receta.nombre }}</strong>
-                    {% if item.receta.notas %} - <em>{{ item.receta.notas }}</em>{% endif %}
-                    <ul>
-                        {% for ingrediente in item.ingredientes %}
-                            <li>{{ ingrediente.cantidad_gramos }}g de {{ ingrediente.ingrediente.nombre }}</li>
-                        {% endfor %}
-                    </ul>
-                </li>
+    <h1>Lista de Recetas</h1>
+
+    {% if recetas_dict %}
+    {% for receta, ingredientes in recetas_dict.items %}
+    <!-- Por cada par [receta, ingredientes] (que recordemos, es un objeto receta de clave y una lista de objetos recetaingrediente de valor) -->
+    <h2>{{ receta.nombre }}</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Ingrediente</th>
+                <th>Cantidad (g)</th>
+                <th>Porcentaje Panadero</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rec_ing in ingredientes %}
+            <tr>
+                <td>{{ rec_ing.ingrediente.nombre }}</td>
+                <td>{{ rec_ing.cantidad_gramos }}</td>
+                <td>{{ rec_ing.porcentaje_panadero }}%</td>
+            </tr>
             {% endfor %}
-        </ul>
+        </tbody>
+    </table>
+{% endfor %}
+    
     {% else %}
+        
         <p>No hay recetas disponibles.</p>
+    
     {% endif %}
+
 {% endblock content %}
